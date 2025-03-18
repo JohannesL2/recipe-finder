@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import SearchInput from './components/searchInput'
+import MealCard from './components/MealCard'
 
 function App() {
   const [searchInput, setSearchInput] = useState('')
   const [data, setData] = useState([])
-
-    const apiUrl = "https://www.themealdb.com/api/json/v1/1/";
+  const apiUrl = "https://www.themealdb.com/api/json/v1/1/";
     
     const fetchRecipes = async () => {
       if (!searchInput) return;
@@ -22,22 +23,17 @@ function App() {
   return (
     <div className='container max-w-[1280px] mx-auto px-8 text-center'>
     <h1 className='font-bold p-6' >Recipe Finder</h1>
-    <input
-    className='bg-blue-500 p-4'
-    type="search"
-    value={searchInput}
-    onChange={(e) => setSearchInput(e.target.value)}
-     />
-     <button 
-     className='btn bg-blue-500 p-4 ml-2 hover:bg-blue-400' onClick={fetchRecipes}>Search</button>
-
+    <SearchInput
+    searchInput={searchInput}
+    setSearchInput={setSearchInput}
+    fetchRecipes={fetchRecipes}
+    />
+    <div>
       {data.map((meal) => (
-        <div key={meal.idMeal}>
-        <h3>{meal.strMeal}</h3>
-        <img key={meal.idMeal} src={meal.strMealThumb} alt="" />
-        </div>
+        <MealCard key={meal.idMeal} meal={meal}/>
       ))}
     </div>
+  </div>
   )
 }
 
