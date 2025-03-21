@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin 'daisyui';
 
 :root {
   margin: 0 auto;
@@ -26,4 +27,8 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.modal-box {
+  background-color: #242424;
 }
