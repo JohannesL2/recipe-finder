@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchInput = ({searchInput, setSearchInput, fetchRecipes}) {
+const SearchInput = ({searchInput, setSearchInput, fetchRecipes}) => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
