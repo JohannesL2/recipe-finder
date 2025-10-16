@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
-import SearchInput from './components/searchInput'
+import SearchInput from './components/SearchInput'
 import MealCard from './components/MealCard'
 import MealModal from './components/MealModal'
 
