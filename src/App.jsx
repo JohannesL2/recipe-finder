@@ -24,16 +24,21 @@ function App() {
 useEffect(() => {
 const fetchRandomRecipes = async () => {
   try {
-  const randomResponse = await Promise.all(
-    Array.from({length: 5}, () => axios.get(`${apiUrl}random.php`) )
-  )
-  setData(randomResponse.map(res => res.data.meals[0]));
+    const results = new Map();
+
+    while (results.size < 5) {
+      const res = await axios.get(`${apiUrl}random.php`);
+      const meal = res.data.meals[0];
+      results.set(meal.idMeal, meal);
+    }
+
+  setData(Array.from(results.values()));
 } catch (error) {
-console.error("Error fetching", error);
-}
+console.error("Error fetching random recipes:", error);
+  }
 };
 
-    fetchRandomRecipes();
+  fetchRandomRecipes();
 }, []);
 
   return (
